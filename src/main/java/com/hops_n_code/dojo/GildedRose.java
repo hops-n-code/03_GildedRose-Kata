@@ -1,5 +1,10 @@
 package com.hops_n_code.dojo;
 
+import com.hops_n_code.dojo.quality.QualityUpdater;
+import com.hops_n_code.dojo.quality.QualityUpdaterFactory;
+
+import java.util.Arrays;
+
 class GildedRose {
     Item[] items;
 
@@ -8,66 +13,9 @@ class GildedRose {
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            doUpdateQuality(item);
-        }
-    }
-
-    private static void doUpdateQuality(Item item) {
-        switch (item.name) {
-            case "Aged Brie":
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-
-                item.sellIn = item.sellIn - 1;
-
-                if (item.sellIn < 0) {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
-                }
-                break;
-            case "Backstage passes to a TAFKAL80ETC concert":
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-
-                    if (item.sellIn < 11) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
-                        }
-                    }
-
-                    if (item.sellIn < 6) {
-                        if (item.quality < 50) {
-                            item.quality = item.quality + 1;
-                        }
-                    }
-                }
-
-                item.sellIn = item.sellIn - 1;
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
-                break;
-            case "Sulfuras, Hand of Ragnaros":
-
-                break;
-            default:
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
-
-                item.sellIn = item.sellIn - 1;
-
-                if (item.sellIn < 0) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-                }
-                break;
-        }
+        Arrays.stream(items)
+                .map(QualityUpdaterFactory::forItem)
+                .forEach(QualityUpdater::updateQuality);
     }
 
 }
