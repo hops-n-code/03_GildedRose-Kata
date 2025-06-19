@@ -1,8 +1,11 @@
 package com.hops_n_code.dojo;
 
 import org.approvaltests.combinations.CombinationApprovals;
+import org.approvaltests.reporters.JunitReporter;
+import org.approvaltests.reporters.UseReporter;
 import org.junit.jupiter.api.Test;
 
+@UseReporter(JunitReporter.class)
 class GildedRoseTest {
 
     @Test
