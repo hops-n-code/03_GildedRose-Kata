@@ -12,12 +12,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
-        <junit.jupiter.version>5.10.3</junit.jupiter.version>
-        <assertj.version>3.26.3</assertj.version>
-        <approval-tests.version>18.0.0</approval-tests.version>
+        <junit.jupiter.version>6.0.0</junit.jupiter.version>
+        <approval-tests.version>25.7.0</approval-tests.version>
     </properties>
 
     <dependencies>
